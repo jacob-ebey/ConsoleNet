@@ -1,4 +1,4 @@
-ConsoleNet
+ConsoleNet [![Build status](https://ci.appveyor.com/api/projects/status/tj6sgf88apla2491/branch/master?svg=true)](https://ci.appveyor.com/project/jacob-ebey/consolenet/branch/master)
 ==========
 A framework for easily creating console applications.
 
