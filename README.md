@@ -2,6 +2,8 @@ ConsoleNet [![Build status](https://ci.appveyor.com/api/projects/status/tj6sgf88
 ==========
 A framework for easily creating console applications.
 
+ConsoleNet is avaliable on NuGet at [https://www.nuget.org/packages/ConsoleNet](https://www.nuget.org/packages/ConsoleNet).
+
 To see an example, visit the repository found at https://github.com/jacob-ebey/ConsoleNet-Example. But the below example pretty much summs it up.
 
 Example
