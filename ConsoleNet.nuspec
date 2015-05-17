@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ConsoleNet</id>
+    <version>$version$</version>
+    <title>ConsoleNet</title>
+    <authors>Jacob Ebey</authors>
+    <owners>Jacob Ebey</owners>
+    <projectUrl>https://github.com/jacob-ebey/ConsoleNet</projectUrl>
+    <iconUrl>http://faviconist.com/icons/8af52be04d43793b14c84a6bc19c52f6/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A framework for easily creating console applications.</description>
+    <copyright>Copyright 2015</copyright>
+    <tags>Framework Console Net Applicatons ConsoleNet</tags>
+  </metadata>
+</package>
