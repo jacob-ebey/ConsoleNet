@@ -135,7 +135,7 @@ namespace ConsoleNet
         /// as a command named "help". When overriding this method do not call the base
         /// unless you also want the default help screen printed (beware, it's ugly!).
         /// </description>
-        protected virtual void Help()
+        public virtual void Help()
         {
             if (ParsedParams.Any())
             {
