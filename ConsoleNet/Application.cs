@@ -30,7 +30,8 @@ namespace ConsoleNet
         {
             ParsedParams = new Dictionary<string, string>();
             string description = "Prints this help screen";
-            AddChildProtected(new FrameworkCommand("help", a => Help()) { Description = description, Help =  description});
+            AddChildProtected(new FrameworkCommand("Help", a => Help()) { Description = description,
+                Help = "Example: appname.exe help commandname"});
         }
 
         /// <summary>
@@ -135,22 +136,29 @@ namespace ConsoleNet
         /// as a command named "help". When overriding this method do not call the base
         /// unless you also want the default help screen printed (beware, it's ugly!).
         /// </description>
-        public virtual void Help()
+        public virtual void Help(bool useParams = true)
         {
-            if (ParsedParams.Any())
+            if (useParams)
             {
-                string commandName = ParsedParams.FirstOrDefault().Key;
-                FrameworkCommand command = Children.FirstOrDefault(c => c.Label == commandName);
+                if (ParsedParams.Any())
+                {
+                    string commandName = ParsedParams.FirstOrDefault().Key;
+                    FrameworkCommand command = Children.FirstOrDefault(c => c.Label.ToLower() == commandName.ToLower());
 
-                if (command != null)
-                    Console.WriteLine(command.Help ?? command.Description);
-                else
-                    Console.WriteLine(string.Format("`{0}` is not a valid command.", commandName)); 
+                    if (command != null)
+                    {
+                        Console.WriteLine(command.Description);
+                        if (command.Help != null)
+                            Console.WriteLine("\n" + command.Help);
+                    }
+                    else
+                        Console.WriteLine(string.Format("`{0}` is not a valid command.", commandName));
 
-                return;
+                    return;
+                }
             }
 
-            Console.WriteLine(string.Format("To use the below commands enter `{0} command-name`.", Label));
+            Console.WriteLine(string.Format($"To use the below commands enter `{System.AppDomain.CurrentDomain.FriendlyName} <command-name>`.", Label));
             Console.WriteLine();
 
             foreach (var command in Children.OrderBy(c => c.Label))
@@ -169,11 +177,13 @@ namespace ConsoleNet
         {
             string commandName = ParseArgs(args);
 
-            FrameworkCommand command = Children.FirstOrDefault(c => c.Label == commandName);
+            FrameworkCommand command = Children.FirstOrDefault(c => c.Label.ToLower() == commandName.ToLower());
 
             if (command == null)
             {
-                Help();
+                Console.Error.WriteLine($"{commandName} is not a valid command. The help has been printed below for your convienience.\n");
+
+                Help(false);
                 return;
             }
 
